@@ -7,7 +7,7 @@ import {
 
 import shallowequal from 'shallowequal';
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
-import md5 from 'md5';
+import sha256 from 'crypto-js/sha256'; // Updated import
 import LoadEarlier from './LoadEarlier';
 import Message from './Message';
 
@@ -44,7 +44,7 @@ export default class MessageContainer extends React.Component {
                     ...m,
                     previousMessage,
                     nextMessage,
-                    hash: md5(toHash)
+                    hash: sha256(toHash).toString() // Updated hashing algorithm
                 };
                 return o;
             }, {})
